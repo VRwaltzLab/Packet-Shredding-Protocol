@@ -2,12 +2,12 @@
 Trading more bandwidth for lower jitter and latency
 
 ## Basic Idea
-1 message becomes k packets via subdivision
-k packets become n packets via an error correcting code
-n packets sent
-k packets waited for to come in correct.
-k packets decoded into original k packets
-1 message reassembled via concatenation.
+1. 1 message becomes k packets via subdivision
+2. k packets become n packets via an error correcting code
+3. n packets sent
+4. k packets waited for to come in correct.
+5. k packets decoded into original k packets
+6. 1 message reassembled via concatenation.
 
 ## Error Correcting Code
 This first version of this protocol will use the Reed Solomon Code of size (n,k) over GF(2^16).
