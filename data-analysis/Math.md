@@ -22,5 +22,13 @@ Jitter
 8.9 ms (idle)
 38.7 ms (loaded)
 There may be a sampling bias. This might be sampling from people checking their internet quality only.
+### Hard to refute assumption:
+According to this [https://www.meter.net/tools/world-ping-test/], a large portion of the world has a ping of 100ms -200ms to my location. Comparing its unloaded latency to LA of 36ms or 11ms, to the above. This ping might depend heavily on internet traffic.
+Assuming a 10% jitter to Round trip Time ratio, I care about 10% jitter on a 100ms connection, because 10ms while less than a beat is more than a frame at 120fps.
 
 ## Why do Packet Shredding
+
+In long distance time sensitive operations, Jitter is notable enough > 10ms that one might be able to improve it with a codec < 1 ms. 
+Packet shredding is going to attempt to do that.
+By using the independence of paths within a large network.
+Will it be a notable improvement? *shrug*
