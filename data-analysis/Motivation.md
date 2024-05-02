@@ -72,3 +72,10 @@ This means that in a congested environment more congestion can be potentially do
 Specifically the probability of q percentile or better latency = B(n,q/100) >=k
 The thing that makes this hard to analyze is that only congestion based variance will be effected by this.
 Variance which happens to all the packets will not be minimized.
+#### Claim 11:
+As n grows, the congestion variance should shrink as paths can be utilized in more nuanced ways because of more discretization; but also as the median (for example n = 2k) of a large sample stabilizes [https://stats.stackexchange.com/questions/45124/central-limit-theorem-for-sample-medians].
+The distribution of sample medians is connected to our case as a set of packets sent at one time are basically a convenience sample of the delay under those network and load conditions.
+Since it is a convenience sample we have to worry about errors more than usual, but we can still assume with enough parallelism/independence in the network that the distribution is roughly normal.
+As n/k grows, more late packets can be ignored and a better percentile is available.
+#### Conclusion 12:
+As n grows long range congestion jitter should shrink.
