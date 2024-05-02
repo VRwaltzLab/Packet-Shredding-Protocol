@@ -79,3 +79,5 @@ Since it is a convenience sample we have to worry about errors more than usual, 
 As n/k grows, more late packets can be ignored and a better percentile is available.
 #### Conclusion 12:
 As n grows long range congestion jitter should shrink.
+## Conclusion:
+Packet shredding is worth implementing because some connections have congestion jitter which it might mitigate, and many connections might be weakened by transmission delays which it should mitigate.
