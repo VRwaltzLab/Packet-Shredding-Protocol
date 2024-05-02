@@ -55,4 +55,12 @@ Over a c-parallel path with sink and source network, when f =c and each fragment
 The transmission Delay and processing Delay decrease because each bit has fewer bits in its fragment to wait on.
 #### Conclusion 1:
 In the network as a whole smaller packet sizes improves delays.
+Essentially, there is a decrease in transmission delay proportional to h*(b-b/f) with an added header transmission delay p(f-1) where b byte message sent over f fragments with empty packet size(header size) p. And a unknown potential for causing its own queueing delay.
+Example 100Mbps, 1MB message over 10 hops  64byte header
+2 fragments decrease: 512KB(1024B/KB)(8b/B)(1/100Mbps)(1Mb/1024kb)(1k/1024b) = 40ms decrease
+2 fragments increase: 64B(8b/B)(1/100Mbps)(1Mb/1024kb)(1k/1024b) = 4.8us (microseconds)
+1024 fragment decrease: 1023KB(1024B/KB)(8b/B)(1/100Mbps)(1Mb/1024Kb)(1Kb/1024b) = 79.9ms decrease
+1024 fragment increase: 64B(1023headers)(8b/B)(1/100Mbps)(1Mb/1024Kb)(1Kb/1024b) = 5.00ms increase
+
+
 
