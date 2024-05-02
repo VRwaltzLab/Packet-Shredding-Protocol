@@ -20,3 +20,4 @@ If we use only errasures, we can do klogk interpolation and nlogk evaluation in 
 1. Packets vary in size.
 2. Packets can take different routes through a network; therefore, packets have noteworthily independent delays.
 3. Packet jitter, and median lag are higher than desired for chronologically-sensitive applications.
+4. Packet transmission delays are notable.
