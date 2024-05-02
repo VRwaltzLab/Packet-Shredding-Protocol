@@ -53,14 +53,20 @@ Over a c-connected network, we expect behaviour to be similar to a c parallel pa
 #### Claim 5:
 Over a c-parallel path with sink and source network, when f =c and each fragment takes a different path:
 The transmission Delay and processing Delay decrease because each bit has fewer bits in its fragment to wait on.
-#### Conclusion 1:
-In the network as a whole smaller packet sizes improves delays.
-Essentially, there is a decrease in transmission delay proportional to h*(b-b/f) with an added header transmission delay p(f-1) where b byte message sent over f fragments with empty packet size(header size) p. And a unknown potential for causing its own queueing delay.
-Example 100Mbps, 1MB message over 10 hops  64byte header
+#### Assumption 6:
+Transmission delay = packet size /transmission speed
+#### Example 7:
+100Mbps, 1MB message over 10 hops  64byte header
 2 fragments decrease: 512KB(1024B/KB)(8b/B)(1/100Mbps)(1Mb/1024kb)(1k/1024b) = 40ms decrease
 2 fragments increase: 64B(8b/B)(1/100Mbps)(1Mb/1024kb)(1k/1024b) = 4.8us (microseconds)
 1024 fragment decrease: 1023KB(1024B/KB)(8b/B)(1/100Mbps)(1Mb/1024Kb)(1Kb/1024b) = 79.9ms decrease
 1024 fragment increase: 64B(1023headers)(8b/B)(1/100Mbps)(1Mb/1024Kb)(1Kb/1024b) = 5.00ms increase
-
-
-
+#### Conclusion 8:
+In the network as a whole smaller packet sizes improves delays.
+Essentially, there is a decrease in transmission delay proportional to h*(b-b/f) with an added header transmission delay p(f-1) where b byte message sent over f fragments with empty packet size(header size) p. And a unknown potential for causing its own queueing delay.
+#### Conjecture/Hypothesis 9:
+Transmission delays might account for most of the loaded vs unloaded latency.
+#### Claim 10:
+When n > k,  n-k late packets can be ignored that is the point of the encoding scheme.
+This means that in a congested environment more congestion can be potentially dodged.
+Specifically the probability of q percentile or better latency = B(n,q/100) >=k
