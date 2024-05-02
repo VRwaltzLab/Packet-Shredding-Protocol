@@ -1,4 +1,4 @@
-# Math
+# Math Motivating Packet Shredding
 So we are assuming by default that each packet's delay follows some distribution D which is dependent
 on the number of packets sent per frame n and bandwidth amount B
 
@@ -26,7 +26,7 @@ There may be a sampling bias. This might be sampling from people checking their 
 According to this [https://www.meter.net/tools/world-ping-test/], a large portion of the world has a ping of 100ms -200ms to my location. Comparing its unloaded latency to LA of 36ms or 11ms, to the above. This ping might depend heavily on internet traffic.
 Assuming a 10% jitter to Round trip Time ratio, I care about 10% jitter on a 100ms connection, because 10ms while less than a beat is more than a frame at 120fps.
 Assumption refutation for unloaded setting near midnight pacific time [https://docs.google.com/spreadsheets/d/1hQGThnwCvQz7-UHJyse2K0WiQhXg0L9oZysCIixtwkg/edit?usp=sharing]
-Assumption confirmation for unloaded setting near 10am pacific time (second page of same document) R^2 > .25
+Assumption confirmation for unloaded setting near 10am pacific time (second page of same document) R^2 > .24
 
 ## Why do Packet Shredding
 
