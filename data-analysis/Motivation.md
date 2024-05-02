@@ -70,3 +70,5 @@ Transmission delays might account for most of the loaded vs unloaded latency.
 When n > k,  n-k late packets can be ignored that is the point of the encoding scheme.
 This means that in a congested environment more congestion can be potentially dodged.
 Specifically the probability of q percentile or better latency = B(n,q/100) >=k
+The thing that makes this hard to analyze is that only congestion based variance will be effected by this.
+Variance which happens to all the packets will not be minimized.
