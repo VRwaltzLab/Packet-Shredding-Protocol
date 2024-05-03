@@ -63,7 +63,7 @@ Transmission delay = packet size /transmission speed
 1024 fragment increase: 64B(1023headers)(8b/B)(1/100Mbps)(1Mb/1024Kb)(1Kb/1024b) = 5.00ms increase
 #### Conclusion 8:
 In the network as a whole smaller packet sizes improves delays.
-Essentially, there is a decrease in transmission delay proportional to h*(b-b/f) with an added header transmission delay p(f-1) where b byte message sent over f fragments with empty packet size(header size) p. And a unknown potential for causing its own queueing delay.
+Essentially, there is a decrease in transmission delay proportional to h*(b-b/f) with an added header transmission delay p(f-1) where b byte message sent over f fragments with empty packet size(header size) p. And a unknown potential for causing its own queueing delay. This [paper](https://link.springer.com/chapter/10.1007/978-981-10-2035-3_14) explores the effect, but has calculation errors, and I don't trust its optimality claims as its assumptions are overly simplistic.
 #### Conjecture/Hypothesis 9:
 Transmission delays might account for most of the loaded vs unloaded latency.
 #### Claim 10:
@@ -78,6 +78,29 @@ The distribution of sample medians is connected to our case as a set of packets 
 Since it is a convenience sample we have to worry about errors more than usual, but we can still assume with enough parallelism/independence in the network that the distribution is roughly normal.
 As n/k grows, more late packets can be ignored and a better percentile is available.
 #### Conclusion 12:
-As n grows long range congestion jitter should shrink.
-## Conclusion:
-Packet shredding is worth implementing because some connections have congestion jitter which it might mitigate, and many connections might be weakened by transmission delays which it should mitigate.
+As n grows long range congestion jitter should shrink..
+#### Should we use packet shredding under VoIP? Q13
+Probably not for a latency speed up:
+38 Bytes L1 and L2 , 20 bytes IPv4, 8 bytes for UDP, packet shredding 16 bytes, RTP 12 bytes VoIP payload 160 bytes
+172 payload, 82 header:
+r transmission speed, h hops: Max speed up = (172(1-1/N)h -82N)/r
+for hops = 8, maximum is at N = 4 -> 704 bytes speed up
+At  Gigabit speeds, speedup is negligible.
+At  1 Megabit speeds, speedup is 5ms. Thus competes with the codec time for wether or not to do it.
+#### Should we use packet shredding under a Music over IP? Q14
+48khz sampling rate, 16bit samples, 30ms sample period:
+48khz(1000hz/khz)(1s/1000ms)-> (48samples/ms)
+(48samples/ms)(30ms)(2B/sample)-> 2,880B payload 82B header
+hops = 8, (2880(1-1/N)h - 82N)/r
+N = 6 -> 18,708B speedup ->  18708B(8b/B)(1s/Gigabit)(1Gb/1024Mb)(1Mb/1024kb)(1Kb/1024b) -> 0.1ms speedup at Gigabit rates.
+#### Conclusion 15:
+This is much more a successful argument against jumbograms than an argument to do anything fancy.
+#### Should we use packet shredding ever under IPv4? Q16
+64KB packet; 82B header:
+r transmission speed, h hops: Max speed up = (64(1024)(1-1/N)h -82N)/r
+16 hops -> N = 112 ->64KB(1024B/KB)(111/112)(16hops) - 82B(112fragments) = 1,030,029B
+->7.67ms at 1 gigabit transmission speeds
+#### REMARK 17
+Ethernet varies from 1Mbps to 400Gbps. So all these calculations become dependent on that, in the delay context.
+Furthermore, different hops have different trsansmission speeds, so the total transmission delay speedup is not (h/r)(message_size)(1-1/n), but something more complicated.
+
