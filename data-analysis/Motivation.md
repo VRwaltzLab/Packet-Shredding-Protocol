@@ -103,4 +103,7 @@ r transmission speed, h hops: Max speed up = (64(1024)(1-1/N)h -82N)/r
 #### REMARK 17
 Ethernet varies from 1Mbps to 400Gbps. So all these calculations become dependent on that, in the delay context.
 Furthermore, different hops have different trsansmission speeds, so the total transmission delay speedup is not (h/r)(message_size)(1-1/n), but something more complicated.
-
+#### If we are transmitting object transforms over the network, are we trying to transmit jumbograms? Q18
+30 transforms(3 scale + 3 orientation + 3 position)(4B floating point) = 1080B, so probably not.
+### Conclusion for the VRwaltzLab:
+Some users will have a bad enough connection in a specific way (one of the hops near their location has low transmission speed) that packet shredding (or the finer packetization and error correction) could be worth it. Some users pairs will have a long enough connection that congestion jitter will be significant enough to be minimized by packet shredding (sending n, and waiting for k < n ). These two use case are tenuous enough though that this protocol ought to determine whether or not it will be beneficial in the setup or resetup phase.
