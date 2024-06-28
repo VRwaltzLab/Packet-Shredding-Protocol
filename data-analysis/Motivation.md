@@ -107,3 +107,7 @@ Furthermore, different hops have different trsansmission speeds, so the total tr
 30 transforms(3 scale + 3 orientation + 3 position)(4B floating point) = 1080B, so probably not.
 ### Conclusion for the VRwaltzLab:
 Some users will have a bad enough connection in a specific way (one of the hops near their location has low transmission speed) that packet shredding (or the finer packetization and error correction) could be worth it. Some users pairs will have a long enough connection that congestion jitter will be significant enough to be minimized by packet shredding (sending n, and waiting for k < n ). These two use case are tenuous enough though that this protocol ought to determine whether or not it will be beneficial in the setup or resetup phase.
+## Pivot Defense
+The jitter that gets added by going from a tethered hotspot (>60ms) to a wifi hot-spot reveals that rather than focus my network improvements 1st on sending messages over the internet, any network improvements should focus on the last hop in the system.
+Wifi being the problem was corroborated by talking to experts.
+This can also be corroborated by the dearth of wireless computer connected headsets when talking to VR enthusiasts.
